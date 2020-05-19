@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  imgURl: 'https://whc.unesco.org/uploads/sites/'
 };
