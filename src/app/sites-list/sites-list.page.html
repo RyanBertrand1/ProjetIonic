@@ -26,4 +26,9 @@
     </ion-fab-button>
   </ion-fab>
 
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData()">
+    <ion-infinite-scroll-content
+            loadingSpinner="circular">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
