@@ -1,7 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {SitesService} from '../services/sites.service';
 import {environment} from '../../environments/environment';
-import {IonInfiniteScroll} from '@ionic/angular';
+import {IonInfiniteScroll, ModalController} from '@ionic/angular';
+import {SearchModalComponent} from './search-modal/search-modal.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sites-list',
@@ -17,23 +19,25 @@ export class SitesListPage implements OnInit {
 
   imgURL;
 
-  constructor(private sitesService: SitesService, private cdr: ChangeDetectorRef) { }
+  isLoading = true;
+
+  constructor(private sitesService: SitesService, private cdr: ChangeDetectorRef, private modalController: ModalController, private router: Router) { }
 
   ngOnInit() {
     this.imgURL = environment.imgURL;
 
-    this.sitesService.getSites().subscribe(res => {
+    this.sitesService.getSites(this.currentPage).subscribe(res => {
       this.sites = res.records;
+      this.isLoading = false;
       this.cdr.detectChanges();
+      console.log(this.sites);
     });
   }
 
   loadData() {
     this.currentPage += 1;
-    console.log(this.currentPage);
     this.infiniteScroll.disabled = true;
     this.sitesService.getSites(this.currentPage).subscribe(res => {
-      console.log(res.records);
       this.sites = this.sites.concat(res.records);
       this.cdr.detectChanges();
       if (res.records.length === 20) {
@@ -42,4 +46,15 @@ export class SitesListPage implements OnInit {
     });
   }
 
+  async presentSearchModal() {
+    const modal = await this.modalController.create({
+      component: SearchModalComponent
+    });
+
+    return await modal.present();
+  }
+
+  showDetails(id) {
+    this.router.navigate(['/tabs/info-site', id]);
+  }
 }

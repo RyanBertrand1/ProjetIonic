@@ -4,11 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="isLoading">
+  <div class="w-100 h-100 d-flex ion-align-items-center ion-justify-content-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="!isLoading">
   <ion-list>
-    <ion-item *ngFor="let site of sites">
+    <ion-item *ngFor="let site of sites" button (click)="showDetails(site.recordid)">
       <div class="w-100 mt-2 mb-1 d-flex align-items-center" style="height: 5.5em">
-        <img [src]="imgURL + site.fields.image_url.filename" class="rounded-circle mr-3">
+        <img width="80px" height="80px" [src]="imgURL + site.fields.image_url.filename" class="rounded-circle mr-3">
         <div class="h-100 w-100 pt-1 pb-2 d-flex flex-column ion-justify-content-between">
           <div style="height: 1em; line-height: 1em; overflow: hidden; word-break: break-all; font-size: 90%" class="font-weight-bold">{{site.fields.site}}</div>
           <div class="d-flex ion-justify-content-between ion-align-items-center">
@@ -21,7 +27,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="presentSearchModal()">
       <ion-icon name="search"></ion-icon>
     </ion-fab-button>
   </ion-fab>

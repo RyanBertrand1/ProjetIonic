@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../sites-list/sites-list.module').then(m => m.SitesListPageModule)
       },
       {
+        path: 'info-site/:id',
+        loadChildren: () => import('../info-site/info-site.module').then( m => m.InfoSitePageModule)
+      },
+      {
         path: 'tab2',
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },

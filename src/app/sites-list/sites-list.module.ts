@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SitesListPageRoutingModule } from './sites-list-routing.module';
 
 import { SitesListPage } from './sites-list.page';
+import {SearchModalComponent} from './search-modal/search-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SitesListPage } from './sites-list.page';
     IonicModule,
     SitesListPageRoutingModule
   ],
-  declarations: [SitesListPage]
+  declarations: [SitesListPage, SearchModalComponent],
+  entryComponents: [SearchModalComponent]
 })
 export class SitesListPageModule {}

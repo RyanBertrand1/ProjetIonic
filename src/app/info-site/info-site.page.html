@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" style="color: white"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{this.site ? this.site.fields.site : ''}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isLoading">
+  <div class="w-100 h-100 d-flex ion-align-items-center ion-justify-content-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="!isLoading">
+  <ion-slides pager="true" [options]="slideOpts" style="background-color: black">
+    <ion-slide *ngFor="let url of imgUrls">
+      <img [src]="'https://whc.unesco.org' + url">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="w-100">
+    <p  style="font-size: 80%" class="px-3 pt-3">
+      {{site.fields.short_description}}
+    </p>
+
+    <div class="px-3 pb-3">
+      <div class="font-weight-bold">Category :</div>
+      <div class="ml-3">{{this.site.fields.category}}</div>
+    </div>
+
+    <div class="px-3 pb-3">
+      <div class="font-weight-bold">Region :</div>
+      <div class="ml-3">{{this.site.fields.region}}</div>
+    </div>
+
+    <div class="px-3 pb-3">
+      <div class="font-weight-bold">States :</div>
+      <div class="ml-3">{{this.site.fields.states}}</div>
+    </div>
+
+    <div class="px-3 pb-3">
+      <div class="font-weight-bold">Inscribed date :</div>
+      <div class="ml-3">{{this.site.fields.date_inscribed}}</div>
+    </div>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentMapModal()">
+      <ion-icon name="location"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
