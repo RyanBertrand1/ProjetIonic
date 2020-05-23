@@ -8,6 +8,7 @@ import { SitesListPageRoutingModule } from './sites-list-routing.module';
 
 import { SitesListPage } from './sites-list.page';
 import {SearchModalComponent} from './search-modal/search-modal.component';
+import {PopoverComponent} from './popover/popover.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import {SearchModalComponent} from './search-modal/search-modal.component';
     IonicModule,
     SitesListPageRoutingModule
   ],
-  declarations: [SitesListPage, SearchModalComponent],
-  entryComponents: [SearchModalComponent]
+  declarations: [SitesListPage, SearchModalComponent, PopoverComponent],
+  entryComponents: [SearchModalComponent, PopoverComponent]
 })
 export class SitesListPageModule {}

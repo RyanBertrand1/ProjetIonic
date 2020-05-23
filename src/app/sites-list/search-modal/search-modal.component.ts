@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavParams} from '@ionic/angular';
+import SearchData from '../../data/search-data';
 
 @Component({
   selector: 'app-search-modal',
@@ -8,13 +9,30 @@ import {ModalController} from '@ionic/angular';
 })
 export class SearchModalComponent implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  searchData = SearchData;
 
-  ngOnInit() {}
+  filters;
+
+  constructor(private modalController: ModalController, private navParams: NavParams) { }
+
+  ngOnInit() {
+    this.filters = this.navParams.get('filters');
+  }
 
   public closeModal() {
     this.modalController.dismiss({
       dismissed: true
     });
+  }
+
+  public search() {
+    this.modalController.dismiss({
+      dismissed: true,
+      filters: this.filters
+    });
+  }
+
+  public log(x) {
+    console.log(x);
   }
 }

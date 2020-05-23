@@ -6,8 +6,25 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
-  <ion-button color="primary" class="position-fixed" style="bottom: 5px; right: 15px; left: 15px">
+<ion-content fullscreen class="p-2">
+  <ion-searchbar [(ngModel)]="filters.search">
+  </ion-searchbar>
+
+  <ion-select class="mx-3" placeholder="Categories" [(ngModel)]="filters.category">
+    <ion-select-option [value]="''"></ion-select-option>
+    <ion-select-option *ngFor="let category of searchData.categories" [value]="category">{{category}}</ion-select-option>
+  </ion-select>
+
+  <ion-select class="mx-3 mt-2" placeholder="Regions" [(ngModel)]="filters.region">
+    <ion-select-option [value]="''"></ion-select-option>
+    <ion-select-option *ngFor="let region of searchData.regions" [value]="region">{{region}}</ion-select-option>
+  </ion-select>
+
+  <ion-select multiple="true" class="mx-3 mt-2" placeholder="States" [(ngModel)]="filters.states">
+    <ion-select-option *ngFor="let state of searchData.states" [value]="state">{{state}}</ion-select-option>
+  </ion-select>
+
+  <ion-button color="primary" class="position-fixed" style="bottom: 5px; right: 15px; left: 15px" (click)="search()">
     Search
   </ion-button>
 </ion-content>

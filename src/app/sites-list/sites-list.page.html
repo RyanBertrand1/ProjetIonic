@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Liste des sites</ion-title>
+    <ion-title>Sites list</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,6 +11,29 @@
 </ion-content>
 
 <ion-content *ngIf="!isLoading">
+  <div class="w-100 border-bottom d-flex ion-align-items-center ion-justify-content-between" *ngIf="testChip()">
+    <div class="d-flex ion-align-items-center">
+      <ion-chip *ngIf="this.filters.search" (click)="presentPopover($event)">
+        <ion-label>Query</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="this.filters.category" style=" overflow: hidden" (click)="presentPopover($event)">
+        <ion-label>Category</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="this.filters.region" style=" overflow: hidden" (click)="presentPopover($event)">
+        <ion-label>Region</ion-label>
+      </ion-chip>
+
+      <ion-chip *ngIf="this.filters.states.length > 0" style=" overflow: hidden" (click)="presentPopover($event)">
+        <ion-label>States</ion-label>
+      </ion-chip>
+    </div>
+
+    <ion-icon (click)="deleteFilters()" name="close-circle" style="transform: scale(1.5)" class="d-flex ion-justify-content-center ion-align-items-center text-danger mr-2"></ion-icon>
+
+  </div>
+
   <ion-list>
     <ion-item *ngFor="let site of sites" button (click)="showDetails(site.recordid)">
       <div class="w-100 mt-2 mb-1 d-flex align-items-center" style="height: 5.5em">
@@ -32,7 +55,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData()">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onScroll()">
     <ion-infinite-scroll-content
             loadingSpinner="circular">
     </ion-infinite-scroll-content>
