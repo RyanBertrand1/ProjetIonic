@@ -10,7 +10,7 @@
   </div>
 </ion-content>
 
-<ion-content *ngIf="!isLoading">
+<ion-content *ngIf="!isLoading" [scrollEvents]="true">
   <div class="w-100 border-bottom d-flex ion-align-items-center ion-justify-content-between" *ngIf="testChip()">
     <div class="d-flex ion-align-items-center">
       <ion-chip *ngIf="this.filters.search" (click)="presentPopover($event)">
@@ -52,6 +52,12 @@
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="presentSearchModal()">
       <ion-icon name="search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark" style="opacity: 0.7; transform: scale(0.8)" (click)="scrollToTop()">
+      <ion-icon name="arrow-up-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

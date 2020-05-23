@@ -5,6 +5,7 @@ import {IonInfiniteScroll, ModalController, PopoverController} from '@ionic/angu
 import {SearchModalComponent} from './search-modal/search-modal.component';
 import {Router} from '@angular/router';
 import {PopoverComponent} from './popover/popover.component';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-sites-list',
@@ -13,6 +14,7 @@ import {PopoverComponent} from './popover/popover.component';
 })
 export class SitesListPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonContent, {static: false}) content: IonContent;
 
   sites;
 
@@ -129,5 +131,9 @@ export class SitesListPage implements OnInit {
       translucent: true
     });
     return await popover.present();
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop(300);
   }
 }
