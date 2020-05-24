@@ -29,13 +29,21 @@ export class SiteMapModalComponent implements OnInit, OnDestroy {
     Leaflet.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
-      id: 'mapbox/streets-v11',
+      id: 'mapbox/satellite-streets-v9',
       tileSize: 512,
       zoomOffset: -1,
       accessToken: environment.mapboxToken
     }).addTo(this.map);
 
-    Leaflet.marker([this.site.fields.coordinates[0], this.site.fields.coordinates[1]]).addTo(this.map).bindPopup(this.site.fields.site).openPopup();
+    const icon = Leaflet.icon({
+      iconUrl: 'assets/leaflet/images/marker-icon.png',
+      shadowUrl: 'assets/leaflet/images/marker-shadow.png',
+
+      popupAnchor:  [0, -40],
+      iconAnchor:   [13, 40]
+    });
+
+    Leaflet.marker([this.site.fields.coordinates[0], this.site.fields.coordinates[1]], {icon}).addTo(this.map).bindPopup(this.site.fields.site).openPopup();
   }
 
   public closeModal() {
