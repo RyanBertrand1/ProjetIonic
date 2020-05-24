@@ -83,7 +83,7 @@ export class SitesListPage implements OnInit {
   }
 
   showDetails(id) {
-    this.router.navigate(['/tabs/info-site', id]);
+    this.router.navigate(['/tabs/info-site/', id], {queryParams: {previousPage : 'sites-list'}});
   }
 
   testChip() {

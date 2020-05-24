@@ -13,6 +13,7 @@ import {SiteMapModalComponent} from './site-map-modal/site-map-modal.component';
 export class InfoSitePage implements OnInit {
 
   recordid;
+  previousPage = '';
   site;
   imgUrls = [];
   isLoading = true;
@@ -26,6 +27,8 @@ export class InfoSitePage implements OnInit {
 
   ngOnInit() {
     this.recordid = this.route.snapshot.params.id;
+
+    this.previousPage = this.route.snapshot.queryParams.previousPage;
 
     this.sitesService.getSiteById(this.recordid).subscribe(res => {
       this.site = res.records[0];

@@ -48,4 +48,12 @@ export class SitesService {
 
     return this.http.get(URL, {params});
   }
+
+  getByPosition(center, radius): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('rows', '500');
+    params = params.set('geofilter.distance', center[0] + ', ' + center[1] + ', ' + (radius * 1000));
+
+    return this.http.get(URL, {params});
+  }
 }
