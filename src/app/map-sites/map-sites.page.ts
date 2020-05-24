@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {ModalController} from '@ionic/angular';
 import {environment} from '../../environments/environment';
@@ -11,7 +11,7 @@ import {MapOptionsModalComponent} from './map-options-modal/map-options-modal.co
   templateUrl: './map-sites.page.html',
   styleUrls: ['./map-sites.page.scss'],
 })
-export class MapSitesPage implements OnInit {
+export class MapSitesPage implements OnInit, OnDestroy {
 
   map: Leaflet.map;
 
@@ -134,5 +134,9 @@ export class MapSitesPage implements OnInit {
     });
 
     this.layers = [];
+  }
+
+  ngOnDestroy(): void {
+    this.map.remove();
   }
 }

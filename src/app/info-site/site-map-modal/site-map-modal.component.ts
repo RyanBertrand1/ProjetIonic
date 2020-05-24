@@ -24,7 +24,7 @@ export class SiteMapModalComponent implements OnInit, OnDestroy {
   ionViewDidEnter() { this.leafletMap(); }
 
   leafletMap() {
-    this.map = Leaflet.map('mapId').setView([this.site.fields.coordinates[0], this.site.fields.coordinates[1]], 13);
+    this.map = Leaflet.map('mapModalId').setView([this.site.fields.coordinates[0], this.site.fields.coordinates[1]], 13);
 
     Leaflet.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
