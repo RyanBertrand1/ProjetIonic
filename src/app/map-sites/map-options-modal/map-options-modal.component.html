@@ -1,0 +1,41 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen >
+<div class="w-100 h-100 p-3">
+  <div class="w-100 d-flex ion-align-items-center ion-justify-content-center">
+    <ion-input type="number" max="1000" min="1" [(ngModel)]="searchOptions.radius" style="border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;" class="pl-2">
+    </ion-input>
+    <div class="h-100 d-flex ion-align-items-center ion-justify-content-center" style="width: 2em; height: 2.95em !important; background-color: #3880ff; color: white; border-top-right-radius: 5px !important;; border-bottom-right-radius: 5px !important;; border: solid lightgray 1px !important;">km</div>
+  </div>
+
+  <div class="w-100 mt-3 d-flex ion-align-items-center ion-justify-content-between">
+    <div class="mr-1">
+      <ion-label>Latitude</ion-label>
+      <ion-input class="pl-2" type="number" [(ngModel)]="searchOptions.center[0]">
+      </ion-input>
+    </div>
+
+    <div class="ml-1">
+      <ion-label>Longitude</ion-label>
+      <ion-input class="pl-2" type="number" [(ngModel)]="searchOptions.center[1]">
+      </ion-input>
+    </div>
+  </div>
+
+  <div class="w-100 d-flex ion-justify-content-center ion-align-items-center mt-2">
+    <ion-button  fill="outline" color="medium" (click)="chooseUserPosition()">Your position</ion-button>
+  </div>
+
+  <ion-button color="primary" class="position-fixed" style="bottom: 5px; right: 15px; left: 15px" (click)="search()">
+    Search
+  </ion-button>
+</div>
+
+<div id="invisibleMap" style="display: none"></div>
+</ion-content>
